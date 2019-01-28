@@ -568,18 +568,6 @@ client.on('message' , message => {
 
 
 
-client.on('ready', () => {
-   console.log(`----------------`);
-      console.log(`Cyhper Script By : DREAM`);
-        console.log(`----------------`);
-      console.log(`ON ${client.guilds.size} Servers '     Script By : DREAM ' `);
-    console.log(`----------------`);
-  console.log(`Logged in as ${client.user.tag}!`);
-client.user.setGame(`Dream Community Bot`,"http://twitch.tv/Light")
-client.user.setStatus("dnd")
-});
-
-var prefix = "+";
 
 client.on('message', message => {
   if (message.author.bot) return;
@@ -590,7 +578,7 @@ client.on('message', message => {
 
   let args = message.content.split(" ").slice(1);
 
-
+// ^^say
   if (command === "say") {
           message.delete()
     message.channel.sendMessage(args.join(" ")).catch(console.error);
@@ -608,6 +596,21 @@ if (command == "embed") {
 
 
 });
+
+
+
+
+client.on('ready', () => {
+   console.log(`----------------`);
+      console.log(`Cyhper Script By : DREAM`);
+        console.log(`----------------`);
+      console.log(`ON ${client.guilds.size} Servers '     Script By : DREAM ' `);
+    console.log(`----------------`);
+  console.log(`Logged in as ${client.user.tag}!`);
+client.user.setGame(`Dream Community Bot`,"http://twitch.tv/Light")
+client.user.setStatus("dnd")
+});
+
 
 
 
