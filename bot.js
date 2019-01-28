@@ -373,6 +373,99 @@ return;
 
 
 
+
+client.on('message', function(msg) {
+         var prefix = "+"
+    if(msg.content.startsWith (prefix  + 'server')) {
+      let embed = new Discord.RichEmbed()
+      .setColor('RANDOM')
+      .setThumbnail(msg.guild.iconURL)
+      .setTitle(`Showing Details Of  **${msg.guild.name}*`)
+      .addField(':globe_with_meridians:** نوع السيرفر**',`[** __${msg.guild.region}__ **]`,true)
+      .addField(':medal:** __الرتب__**',`[** __${msg.guild.roles.size}__ **]`,true)
+      .addField(':red_circle:**__ عدد الاعضاء__**',`[** __${msg.guild.memberCount}__ **]`,true)
+      .addField(':large_blue_circle:**__ عدد الاعضاء الاونلاين__**',`[** __${msg.guild.members.filter(m=>m.presence.status == 'online').size}__ **]`,true)
+      .addField(':pencil:**__ الرومات الكتابية__**',`[** __${msg.guild.channels.filter(m => m.type === 'text').size}__** ]`,true)
+      .addField(':microphone:**__ رومات الصوت__**',`[** __${msg.guild.channels.filter(m => m.type === 'voice').size}__ **]`,true)
+      .addField(':crown:**__ الأونـر__**',`**${msg.guild.owner}**`,true)
+      .addField(':id:**__ ايدي السيرفر__**',`**${msg.guild.id}**`,true)
+      .addField(':date:**__ تم عمل السيرفر في__**',msg.guild.createdAt.toLocaleString())
+      msg.channel.send({embed:embed});
+    }
+  });
+  
+  client.on("message", function(message) {
+ if(message.author.bot) return;
+ if(message.channel.type === "dm") return;
+let messageArray = message.content.split(" ");
+let command = messageArray[0];
+let args = message.content.split(" ").slice(2);
+let toSend = message.mentions.users.first();
+        
+         var currentTime = new Date(),
+          hours = currentTime.getHours() ,
+          minutes = currentTime.getMinutes(),
+          Year = currentTime.getFullYear() - 2000,
+          Month = currentTime.getMonth() + 1,
+          Day = currentTime.getDate();
+          var suffix = 'AM';
+          if (hours >= 12) {
+             suffix = 'PM';
+              hours = hours - 12;
+         }
+          if (hours == 0) {
+              hours = 12;
+          }
+let xFive = new Discord.RichEmbed()
+    .setColor("ORANGE")
+    .setThumbnail(message.author.avatarURL)
+    .setFooter("SenioR TeaM. || "+"- "+Month+"."+Year+"."+Day+" -"+hours+":"+minutes+" "+suffix)
+    .addField("Message","**"+args+"**")
+if(command === `${prefix}message`) {
+    if(toSend.bot) return message.reply("**# You cannot send a message to a bot!** :sparkler:");
+    if(args < 1) return message.reply("**# Please , Specify a valid arguments!** :sparkler:");
+    toSend.send({embed:xFive});
+    message.reply("** :white_check_mark: , Sent a Message to **<@"+toSend.id+">")
+ }
+});
+  
+   client.on("message", msg => {
+           var prefix = "+";
+  if(msg.content.startsWith (prefix + "id")) {
+    if(!msg.channel.guild) return msg.reply('**:x: اسف لكن هذا الامر للسيرفرات فقط **');         
+      const embed = new Discord.RichEmbed();
+  embed.addField(":cloud_tornado:  الاسم", `**[ ${msg.author.username}#${msg.author.discriminator} ]**`, true)
+          .addField(":id:  الايدي", `**[ ${msg.author.id} ]**`, true)
+          .setColor("RANDOM")
+          .setFooter(msg.author.username , msg.author.avatarURL)
+          .setThumbnail(`${msg.author.avatarURL}`)
+          .setTimestamp()
+          .setURL(`${msg.author.avatarURL}`)
+          .addField(':spy:  الحالة', `**[ ${msg.author.presence.status.toUpperCase()} ]**`, true)
+          .addField(':satellite_orbital:   يلعب', `**[ ${msg.author.presence.game === null ? "No Game" : msg.author.presence.game.name} ]**`, true)
+          .addField(':military_medal:  الرتب', `**[ ${msg.member.roles.filter(r => r.name).size} ]**`, true)
+          .addField(':robot:  هل هو بوت', `**[ ${msg.author.bot.toString().toUpperCase()} ]**`, true);
+      msg.channel.send({embed: embed})
+  }
+});
+
+client.on('message', message => {
+    if(message.content == '+member') {
+    const embed = new Discord.RichEmbed()
+    .setDescription(`**Members info🔋
+:green_heart: online:   ${message.guild.members.filter(m=>m.presence.status == 'online').size}
+:heart:dnd:       ${message.guild.members.filter(m=>m.presence.status == 'dnd').size}
+:yellow_heart: idle:      ${message.guild.members.filter(m=>m.presence.status == 'idle').size}   
+:black_heart: offline:   ${message.guild.members.filter(m=>m.presence.status == 'offline').size} 
+:blue_heart:   all:  ${message.guild.memberCount}**`)         
+         message.channel.send({embed});
+
+    }
+  });
+  
+
+
+
 client.on('ready', () => {
    console.log(`----------------`);
       console.log(`Cyhper Script By : DREAM`);
