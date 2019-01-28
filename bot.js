@@ -509,6 +509,65 @@ function timeCon(time) {
 
 
 
+client.on("message", (message) => {
+if (message.content.startsWith("+ct")) {
+            if (!message.member.hasPermission('MANAGE_CHANNELS')) return message.reply("You Don't Have `MANAGE_CHANNELS` Premissions ");
+        let args = message.content.split(" ").slice(1);
+    message.guild.createChannel(args.join(' '), 'text');
+message.channel.sendMessage('تـم إنـشاء روم كـتابـي')
+
+}
+});
+
+
+client.on("message", (message) => {
+if (message.content.startsWith("+cv")) {
+            if (!message.member.hasPermission('MANAGE_CHANNELS')) return message.reply("You Don't Have `MANAGE_CHANNELS` Premissions ");
+        let args = message.content.split(" ").slice(1);
+    message.guild.createChannel(args.join(' '), 'voice');
+    message.channel.sendMessage('تـم إنـشاء روم صـوتي')
+    
+}
+});
+
+
+
+client.on('message' , message => {
+
+    if (message.content === "+invitebot") {
+        if(!message.channel.guild) return message.reply('**الآمر فقط في السيرفرات**');
+     const embed = new Discord.RichEmbed()
+ .setColor("RANDOM")
+ .setThumbnail(client.user.avatarURL)     
+ .setDescription("Add me" + `
+ **
+رابط البوت | https://discordapp.com/api/oauth2/authorize?client_id=500666770080923649&permissions=0&scope=bot
+ **
+`);
+  message.author.sendEmbed(embed);
+   }
+});
+
+
+  client.on('message' , message => {
+
+    if (message.content === "+support") {
+        if(!message.channel.guild) return message.reply('**الآمر فقط في السيرفرات**');
+     const embed = new Discord.RichEmbed()
+ .setColor("RANDOM")
+ .setThumbnail(client.user.avatarURL)     
+ .setDescription(" ***welcome To server support*** " + `
+ **
+رابط السيرفر | https://discord.gg/JdNVrtV
+ **
+`);
+  message.author.sendEmbed(embed);
+   }
+});
+
+
+
+
 client.on('ready', () => {
    console.log(`----------------`);
       console.log(`Cyhper Script By : DREAM`);
